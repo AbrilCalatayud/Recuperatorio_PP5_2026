@@ -1,12 +1,12 @@
 class Persona:
     def __init__(self):
-        self.temperatura = 36
+        self.temperatura = 36.0
         self.cant_celulas = 1000000
         self.enfermedades = []
         self.vivo = True
 
     def esta_sana(self):
-        return all(enfermedad.esta_curada for enfermedad in self.enfermedades)
+        return all(enfermedad.esta_curada() for enfermedad in self.enfermedades)
 
     def esta_viva(self):
         return self.vivo

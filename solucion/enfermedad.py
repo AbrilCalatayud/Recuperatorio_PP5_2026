@@ -13,10 +13,10 @@ class Enfermedad(ABC):
         pass
 
     def atenuar(self, dosis):
-        if self.cant_celulas_amenazadas < 15:
+        if self.cant_celulas_amenazadas < dosis * 15:
             self.cant_celulas_amenazadas = 0
         else:
-            self.cant_celulas_amenazadas -= dosis * 1
+            self.cant_celulas_amenazadas -= dosis * 15
 
     def recibir_antibiotico(self, dosis):
         pass
