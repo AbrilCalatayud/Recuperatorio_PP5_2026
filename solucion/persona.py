@@ -8,6 +8,13 @@ class Persona:
     def esta_sana(self):
         return all(enfermedad.esta_curada for enfermedad in self.enfermedades)
 
+    def esta_viva(self):
+        return self.vivo
+
+    def vivir_un_dia(self):
+        for enfermedad in self.enfermedades:
+            enfermedad.afectar_persona(self)
+
     def contraer_enfermedad(self, enfermedad):
         if self.vivo:
             self.enfermedades.append(enfermedad)
