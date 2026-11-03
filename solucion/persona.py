@@ -9,3 +9,6 @@ class Persona:
 
     def contraer_enfermedad(self, enfermedad):
         self.enfermedades.append(enfermedad)
+
+    def subir_temperatura(self, grados_subidos):
+        self.temperatura += grados_subidos
