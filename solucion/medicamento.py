@@ -12,3 +12,7 @@ class Antibiotico(Medicamento):
 class Inmunosupresor(Medicamento):
     def accionar(self, enfermedad, dosis):
         enfermedad.recibir_inmunosupresor(dosis)
+
+class Panacea(Medicamento):
+    def accionar(self, enfermedad, dosis):
+        enfermedad.recibir_panacea(dosis)

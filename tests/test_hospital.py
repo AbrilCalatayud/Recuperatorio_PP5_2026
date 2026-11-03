@@ -1,7 +1,7 @@
 import pytest
 from solucion.persona import Persona
 from solucion.enfermedad import Infecciosa, Autoinmune, Malaria, Lupus
-from solucion.medicamento import Antibiotico, Inmunosupresor
+from solucion.medicamento import Antibiotico, Inmunosupresor, Panacea
 from solucion.hospital import Hospital
 
 def test_persona_sana_contrae_malaria_lupus_pasa_a_enferma():
@@ -45,5 +45,15 @@ def test_ingresa_uno_con_malaria_otro_con_lupus_y_viven_un_dia_verificar_estado(
     assert persona2.cant_celulas == 998000
     assert lupus.cant_celulas_amenazadas == 2000
 
+def test_panacea_atenua_ambos_tipos():
+    persona = Persona()
+    malaria = Malaria()
+    lupus = Lupus()
+    persona.contraer_enfermedad(malaria)
+    persona.contraer_enfermedad(lupus)
 
+    persona.recibir_medicamento(Panacea(), 100)
+
+    assert malaria.cant_celulas_amenazadas == 3500
+    assert lupus.cant_celulas_amenazadas == 500
     

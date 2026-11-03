@@ -24,6 +24,9 @@ class Enfermedad(ABC):
     def recibir_inmunosupresor(self, dosis):
         pass
 
+    def recibir_panacea(self, dosis):
+        self.atenuar(dosis)
+
 class Infecciosa(Enfermedad):
     def __init__(self, cant_celulas_amenazadas):
         super().__init__(cant_celulas_amenazadas)
