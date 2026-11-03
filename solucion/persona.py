@@ -18,7 +18,11 @@ class Persona:
                 medicamento.accionar(enfermedad, dosis)
 
     def subir_temperatura(self, grados_subidos):
-        self.temperatura += grados_subidos
+        if (self.temperatura + grados_subidos) < 42:
+            self.temperatura += grados_subidos
+        else:
+            self.temperatura = 42
+            self.vivo = False
 
     def disminuir_celulas(self, cantidad):
         if self.cant_celulas >= cantidad:
