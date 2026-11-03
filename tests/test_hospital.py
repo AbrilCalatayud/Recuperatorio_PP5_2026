@@ -56,6 +56,28 @@ def test_panacea_atenua_ambos_tipos():
 
     assert malaria.cant_celulas_amenazadas == 3500
     assert lupus.cant_celulas_amenazadas == 500
+
+def test_ronda_medica_paciente_con_lupus_recibe_el_alta_paciente_con_malaria_no():
+    hospital = Hospital([])
+
+    persona1 = Persona()
+    malaria = Malaria()
+    persona1.contraer_enfermedad(malaria)
+
+    persona2 = Persona()
+    lupus = Lupus()
+    persona2.contraer_enfermedad(lupus)
+
+    hospital.agregar_paciente(persona1)
+    hospital.agregar_paciente(persona2)
+
+    hospital.ronda_medica()
+
+    assert malaria.cant_celulas_amenazadas == 500
+    assert lupus.cant_celulas_amenazadas == 0
+
+    assert hospital.persona_esta_en_hospital(persona1) is True
+    assert hospital.persona_esta_en_hospital(persona2) is False
     
 def test_persona_fallecida_no_puede_contraer_enfermedad():
     persona = Persona()
@@ -99,7 +121,6 @@ def test_persona_ya_esta_en_hospital_no_se_puede_agregar():
     with pytest.raises(ValueError):
         hospital.agregar_paciente(persona)
     
-
 def persona_no_esta_en_hospital_no_se_puede_dar_de_alta():
     persona = Persona()
 
