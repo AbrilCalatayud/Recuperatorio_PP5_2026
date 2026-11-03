@@ -12,10 +12,10 @@ class Persona:
         if self.vivo:
             self.enfermedades.append(enfermedad)
 
-    def recibir_medicamento(self, medicamento):
+    def recibir_medicamento(self, medicamento, dosis):
         if self.vivo:
             for enfermedad in self.enfermedades:
-                medicamento.accionar(enfermedad)
+                medicamento.accionar(enfermedad, dosis)
 
     def subir_temperatura(self, grados_subidos):
         self.temperatura += grados_subidos
