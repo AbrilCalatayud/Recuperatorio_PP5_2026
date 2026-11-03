@@ -23,6 +23,8 @@ class Persona:
         self.enfermedades.append(enfermedad)
 
     def recibir_medicamento(self, medicamento, dosis):
+        if dosis <= 0:
+            raise ValueError("No se puede administrar una dosis menor o igual a cero")
         if not self.vivo:
             raise ValueError("Una persona fallecida no puede recibir un medicamento")
         for enfermedad in self.enfermedades:

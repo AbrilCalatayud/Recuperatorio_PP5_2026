@@ -80,3 +80,30 @@ def test_persona_fallecida_no_puede_vivir_un_dia():
     assert persona.esta_viva() is False
     with pytest.raises(ValueError):
         persona.vivir_un_dia()
+
+def test_no_se_puede_administrar_dosis_igual_a_cero():
+    persona = Persona()
+    with pytest.raises(ValueError):
+        persona.recibir_medicamento(Panacea(), 0)
+
+def test_no_se_puede_administrar_dosis_negativa():
+    persona = Persona()
+    with pytest.raises(ValueError):
+        persona.recibir_medicamento(Panacea(), -1)
+
+def test_persona_ya_esta_en_hospital_no_se_puede_agregar():
+    persona = Persona()
+    
+    hospital = Hospital([persona])
+
+    with pytest.raises(ValueError):
+        hospital.agregar_paciente(persona)
+    
+
+def persona_no_esta_en_hospital_no_se_puede_dar_de_alta():
+    persona = Persona()
+
+    hospital = Hospital([])
+
+    with pytest.raises(ValueError):
+        hospital.dar_alta_a_paciente(persona)
