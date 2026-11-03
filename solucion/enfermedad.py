@@ -44,3 +44,11 @@ class Autoinmune(Enfermedad):
 
     def recibir_inmunosupresor(self, dosis):
         self.atenuar(dosis)
+
+class  Malaria(Infecciosa):
+    def __init__(self, cant_celulas_amenazadas=5000):
+        super().__init__(cant_celulas_amenazadas)
+
+class Lupus(Autoinmune):
+    def __init__(self, cant_celulas_amenazadas=2000):
+        super().__init__(cant_celulas_amenazadas)
