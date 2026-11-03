@@ -57,3 +57,26 @@ def test_panacea_atenua_ambos_tipos():
     assert malaria.cant_celulas_amenazadas == 3500
     assert lupus.cant_celulas_amenazadas == 500
     
+def test_persona_fallecida_no_puede_contraer_enfermedad():
+    persona = Persona()
+    persona.disminuir_celulas(1000000) 
+    #esto es solo de prueba, normalmente debería matarla una enfermedad
+    assert persona.esta_viva() is False
+    with pytest.raises(ValueError):
+        persona.contraer_enfermedad(Malaria())
+
+def test_persona_fallecida_no_puede_recibir_medicamento():
+    persona = Persona()
+    persona.disminuir_celulas(1000000) 
+    #esto es solo de prueba, normalmente debería matarla una enfermedad
+    assert persona.esta_viva() is False
+    with pytest.raises(ValueError):
+        persona.recibir_medicamento(Panacea(), 100)
+
+def test_persona_fallecida_no_puede_vivir_un_dia():
+    persona = Persona()
+    persona.disminuir_celulas(1000000) 
+    #esto es solo de prueba, normalmente debería matarla una enfermedad
+    assert persona.esta_viva() is False
+    with pytest.raises(ValueError):
+        persona.vivir_un_dia()

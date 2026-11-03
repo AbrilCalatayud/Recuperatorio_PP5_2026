@@ -12,17 +12,21 @@ class Persona:
         return self.vivo
 
     def vivir_un_dia(self):
+        if not self.vivo:
+            raise ValueError("Una persona fallecida no puede vivir un día")
         for enfermedad in self.enfermedades:
             enfermedad.afectar_persona(self)
 
     def contraer_enfermedad(self, enfermedad):
-        if self.vivo:
-            self.enfermedades.append(enfermedad)
+        if not self.vivo:
+            raise ValueError("Una persona fallecida no puede contraer una enfermedad")
+        self.enfermedades.append(enfermedad)
 
     def recibir_medicamento(self, medicamento, dosis):
-        if self.vivo:
-            for enfermedad in self.enfermedades:
-                medicamento.accionar(enfermedad, dosis)
+        if not self.vivo:
+            raise ValueError("Una persona fallecida no puede recibir un medicamento")
+        for enfermedad in self.enfermedades:
+            medicamento.accionar(enfermedad, dosis)
 
     def subir_temperatura(self, grados_subidos):
         if (self.temperatura + grados_subidos) < 42:
@@ -32,7 +36,7 @@ class Persona:
             self.vivo = False
 
     def disminuir_celulas(self, cantidad):
-        if self.cant_celulas >= cantidad:
+        if self.cant_celulas > cantidad:
             self.cant_celulas -= cantidad
         else:
             self.cant_celulas = 0
