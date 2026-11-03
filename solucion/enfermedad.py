@@ -34,3 +34,13 @@ class Infecciosa(Enfermedad):
 
     def recibir_antibiotico(self, dosis):
         self.atenuar(dosis)
+
+class Autoinmune(Enfermedad):
+    def __init__(self, cant_celulas_amenazadas):
+        super().__init__(cant_celulas_amenazadas)
+
+    def afectar_persona(self, persona):
+        persona.disminuir_celulas(self.cant_celulas_amenazadas)
+
+    def recibir_inmunosupresor(self, dosis):
+        self.atenuar(dosis)

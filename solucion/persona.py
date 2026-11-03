@@ -3,12 +3,26 @@ class Persona:
         self.temperatura = 36
         self.cant_celulas = 1000000
         self.enfermedades = []
+        self.vivo = True
 
     def esta_sana(self):
         return all(enfermedad.esta_curada for enfermedad in self.enfermedades)
 
     def contraer_enfermedad(self, enfermedad):
-        self.enfermedades.append(enfermedad)
+        if self.vivo:
+            self.enfermedades.append(enfermedad)
+
+    def recibir_medicamento(self, medicamento):
+        if self.vivo:
+            for enfermedad in self.enfermedades:
+                medicamento.accionar(enfermedad)
 
     def subir_temperatura(self, grados_subidos):
         self.temperatura += grados_subidos
+
+    def disminuir_celulas(self, cantidad):
+        if self.cant_celulas >= cantidad:
+            self.cant_celulas -= cantidad
+        else:
+            self.cant_celulas = 0
+            self.vivo = False
